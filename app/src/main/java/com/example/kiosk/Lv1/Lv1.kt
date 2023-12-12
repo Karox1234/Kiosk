@@ -1,6 +1,8 @@
 package com.example.kiosk.Lv1
 
 fun main() {
+    val order = mutableListOf<String>()
+
     println("어서오세요")
 
     while (true) {
@@ -8,7 +10,8 @@ fun main() {
         println("1.스테이크류 | 육즙이 넘치는 스테이크!")
         println("2.구이류 | 맛있는 고기들을 한 자리에!")
         println("3.음료 및 주류 | 찰떡궁합 음료와 주류들!")
-        println("4.종료 | 프로그램을 종료합니다")
+        println("4.주문 취소 | 주문 취소")
+        println("5.종료 | 프로그램을 종료합니다")
         val menuPanel = readLine()
         when (menuPanel) {
             "1" -> {
@@ -21,20 +24,24 @@ fun main() {
                 when (stakeSelect) {
                     "1" -> {
                         println("안심 선택 완료")
-                        break
+                        order.add("안심")
                     }
+
                     "2" -> {
                         println("등심 선택 완료")
-                        break
+                        order.add("등심")
                     }
+
                     "3" -> {
                         println("T본 선택 완료")
-                        break
+                        order.add("T본")
                     }
-                    "4" ->  {
+
+                    "4" -> {
                         println("전 메뉴판으로 돌아갑니다")
-                        return main()
+                        continue
                     }
+
                     else -> {
                         System.err.println("다시 올바른 번호를 입력해주세요")
                         continue
@@ -43,6 +50,7 @@ fun main() {
                 }
 
             }
+
             "2" -> {
                 println("구위 부위를 선택하세요")
                 println("1.삼겹살 | W 6.9 | 한국인의 소울푸드")
@@ -53,20 +61,24 @@ fun main() {
                 when (meatSelect) {
                     "1" -> {
                         println("삼겹살 선택 완료")
-                        break
+                        order.add("삼겹살")
                     }
+
                     "2" -> {
                         println("목살 선택 완료")
-                        break
+                        order.add("목살")
                     }
+
                     "3" -> {
                         println("갈매기살 선택 완료")
-                        break
+                        order.add("갈매기살")
                     }
-                    "4" ->  {
+
+                    "4" -> {
                         println("전 메뉴판으로 돌아갑니다")
-                        return main()
+                        continue
                     }
+
                     else -> {
                         System.err.println("다시 올바른 번호를 입력해주세요")
                         continue
@@ -86,24 +98,29 @@ fun main() {
                 when (drinkSelect) {
                     "1" -> {
                         println("탄산음료 선택 완료")
-                        break
+                        order.add("탄산음료")
                     }
+
                     "2" -> {
                         println("맥주 선택 완료")
-                        break
+                        order.add("맥주")
                     }
+
                     "3" -> {
                         println("소주 선택 완료")
-                        break
+                        order.add("소주")
                     }
+
                     "4" -> {
                         println("와인 선택 완료")
-                        break
+                        order.add("와인")
                     }
-                    "5" ->  {
+
+                    "5" -> {
                         println("전 메뉴판으로 돌아갑니다")
-                        return main()
+                        continue
                     }
+
                     else -> {
                         System.err.println("다시 올바른 번호를 입력해주세요")
                         continue
@@ -114,9 +131,43 @@ fun main() {
             }
 
             "4" -> {
+                while (true)
+                    when {
+                        order.isNotEmpty() -> {
+                            println("주문 내역: $order")
+                            println("취소할 항목을 입력하세요:")
+                            println("뒤로가기를 원할경우 숫자 0 을 입력하세요")
+                            val menuCancel = readLine().toString()
+                            when {
+                                order.contains(menuCancel) -> {
+                                    order.remove(menuCancel)
+                                    println("주문 내역에서 ${menuCancel} 항목을 취소했습니다.")
+                                }
+
+                                menuCancel == "0" -> {
+                                    println("전 메뉴판으로 돌아갑니다")
+                                    break
+                                }
+
+                                else -> {
+                                    println("주문 내역에 ${menuCancel} 항목이 없습니다.")
+                                }
+                            }
+                        }
+
+                        else -> {
+                            println("주문 내역이 비어 있습니다. 취소할 항목이 없습니다.")
+                            break
+                        }
+                    }
+            }
+
+            "5" -> {
                 println("메뉴판을 종료합니다")
+                println("주문 내역: $order")
                 return
             }
+
             else -> {
                 System.err.println("다시 올바른 번호를 입력해주세요")
                 continue
