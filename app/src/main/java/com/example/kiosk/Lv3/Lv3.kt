@@ -53,16 +53,15 @@ class Menu {
         displayMenuItem(drinkMenuItem)
     }
 
-    fun displayMenuItem() {
-        val menus : List<MenuItem>
+    fun displayMenuItem(items: List<MenuItem>) {
         println("원하시는 메뉴를 선택하세요")
-        //각 메뉴가 출력되게
-        //근데 번호가 1 2 3 4 이런식으로 올라갈수 있게
-        //ex)1.안심 2.등심 3.T본 4.전메뉴판으로 돌아가기
-        //근데 음료류만 5개라서 음료류는 5번이 전메뉴판으로 가기가 되어야함...
-
+        var i: Int = 1;
+        for (item: MenuItem in items) {
+            println("$i. ${item.name} | ${item.price}원 : ${item.content}")
+            i++
+        }
+        println("$i. 전 메뉴판으로 돌아가기")
     }
-
 }
 
 
