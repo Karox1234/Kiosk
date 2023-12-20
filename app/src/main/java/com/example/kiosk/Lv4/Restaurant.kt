@@ -1,9 +1,7 @@
 package com.example.kiosk.Lv4
-
-class Restaurant {
+//클래스 별로 파일을 나눠서 관리함(5번 피드백)
+class Restaurant(val menu: Menu) {
     val order = Order()
-    val menu = Menu()
-
     fun start() {
         println("어서오세요")
         while (true) {

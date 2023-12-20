@@ -1,8 +1,8 @@
 package com.example.kiosk.Lv4
-
+//클래스 별로 파일을 나눠서 관리함(5번 피드백)
 class Order {
     val items = ArrayList<FoodMenu>()
-
+//기존에 String으로 받던 매개변수를 FoodMenu로 받음 (4번 피드백)
     fun addItem(item: FoodMenu) {
         println("${item.name} 선택 완료")
         items.add(item)
